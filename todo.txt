@@ -1,0 +1,4 @@
+- Search Bar
+- Display Movies
+- Load More
+- More Details
