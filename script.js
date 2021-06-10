@@ -25,6 +25,14 @@ searchForm.addEventListener("submit", async (evt) => {
     //3. Get movie details
 })
 
+loadMoreBtn.addEventListener("click", (evt) => {
+    evt.preventDefault();
+
+    page++;
+    const apiURL = `https://api.themoviedb.org/3/trending/${mediaType}/${timeWindow}?api_key=${API_KEY}&page=${page}`;
+    displayMovies(apiURL);
+});
+
 
 /**
  * 
@@ -92,17 +100,21 @@ function loadMoviesToPage(movieInformation) {
     });
 }
 
+/**
+ * 
+ * @param {String} apiURL - the url that is sent to the API
+ * 
+ * Calls API and displays movies to page
+ */
+async function displayMovies (apiURL) {
+    const responseData = await getResponse(apiURL);
+    movieInformation = getMovieData(responseData);
+    loadMoviesToPage(movieInformation);
+}
+
 window.onload = onloadFunc;
 async function onloadFunc () {
-        //1. Search Api for movies
+
         const apiURL = `https://api.themoviedb.org/3/trending/${mediaType}/${timeWindow}?api_key=${API_KEY}&page=${page}`
-        const responseData = await getResponse(apiURL);
-        
-        console.log(responseData.results[0]);
-        movieInformation = getMovieData(responseData);
-        
-        //2. Display movies
-        loadMoviesToPage(movieInformation);
-
-
-    }
+        displayMovies(apiURL);
+}
