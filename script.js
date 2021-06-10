@@ -71,7 +71,11 @@ function getMovieData(responseData) {
 function addMovieToPage(movieName, moviePoster,  movieRating) {
     document.querySelector(".grid-container").innerHTML += `
     <div class="grid-item">
-         <img src="https://image.tmdb.org/t/p/original/${moviePoster}" >
+         <img src="https://image.tmdb.org/t/p/original/${moviePoster}">
+         <div class="movie-header">
+            <div class="movie-rating"><p>&#11088 ${movieRating}</p></div>
+            <div class="movie-title"><p>${movieName}</p></div>
+        </div>
     </div>
     `;
 }

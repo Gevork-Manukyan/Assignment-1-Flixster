@@ -45,6 +45,14 @@ img {
     margin: 0;
 }
 
+.movie-title {
+    width: 75%;
+}
+
+.movie-title p{
+    word-wrap: normal;
+}
+
 
 /****************
     LOAD MORE
