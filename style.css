@@ -34,6 +34,12 @@ img {
 
     grid-column-gap: 10px;
     grid-row-gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+.movie-container {
+    width: 250px;
 }
 
 .grid-item {
@@ -46,7 +52,7 @@ img {
 }
 
 .movie-title {
-    width: 75%;
+    
 }
 
 .movie-title p{

@@ -8,22 +8,42 @@ const loadMoreBtn = document.querySelector("#loadMoreBtn");
 let timeWindow = "week";
 let mediaType = "movie";
 let page = 1;
+let currentInput = "";
 
 
 searchForm.addEventListener("submit", async (evt) => {
     evt.preventDefault();
 
-    //1. Get user input
     const userInput = evt.target.input.value;
 
-    //2. Search for specified Movie
-    const apiURL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
-    //const apiURL = "https://api.themoviedb.org/3/search/movie?api_key="+apiKey+"&language=en-US&query="+input+"&page=1&include_adult=false"
-    const responseData = await getResponse(apiURL);
+    //if search didn't change don't load anything
+    if (inputSame(userInput))
+        return;
+    
+    clearMovieArea();
 
+    //Checks if search is empty and loads trending page if so
+    if (userInput.trim() == "") {
+        loadTrendingMovies();
+        currentInput = userInput;
+        return;
+    }
 
-    //3. Get movie details
+    currentInput = userInput;
+    const apiURL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${userInput}`;
+    displayMovies(apiURL);
 })
+
+/**
+ * 
+ * @param {String} userInput 
+ * @returns true if new input is same as the last input
+ */
+function inputSame(userInput) {
+    return userInput.trim() === currentInput.trim();
+}
+
+
 
 loadMoreBtn.addEventListener("click", (evt) => {
     evt.preventDefault();
@@ -79,13 +99,22 @@ function getMovieData(responseData) {
 function addMovieToPage(movieName, moviePoster,  movieRating) {
     document.querySelector(".grid-container").innerHTML += `
     <div class="grid-item">
-         <img src="https://image.tmdb.org/t/p/original/${moviePoster}">
-         <div class="movie-header">
-            <div class="movie-rating"><p>&#11088 ${movieRating}</p></div>
-            <div class="movie-title"><p>${movieName}</p></div>
+        <div class="movie-container">
+            <img src="https://image.tmdb.org/t/p/original/${moviePoster}" alt="Poster image of ${movieName}">
+            <div class="movie-header">
+                <div class="movie-rating"><p>&#11088 ${movieRating}</p></div>
+                <div class="movie-title"><p>${movieName}</p></div>
+            </div>
         </div>
     </div>
     `;
+}
+
+/**
+ * Clears movies from page
+ */
+ function clearMovieArea() {
+    movieArea.innerHTML = "";
 }
 
 /**
@@ -98,6 +127,14 @@ function loadMoviesToPage(movieInformation) {
     movieInformation.movieNames.forEach((element, index) => {
         addMovieToPage(element, movieInformation.moviePosters[index], movieInformation.movieRatings[index]);
     });
+}
+
+/**
+ * Loads currently trending movies to the page
+ */
+function loadTrendingMovies() {
+    const apiURL = `https://api.themoviedb.org/3/trending/${mediaType}/${timeWindow}?api_key=${API_KEY}&page=${page}`
+    displayMovies(apiURL);
 }
 
 /**
@@ -115,6 +152,5 @@ async function displayMovies (apiURL) {
 window.onload = onloadFunc;
 async function onloadFunc () {
 
-        const apiURL = `https://api.themoviedb.org/3/trending/${mediaType}/${timeWindow}?api_key=${API_KEY}&page=${page}`
-        displayMovies(apiURL);
+    loadTrendingMovies();
 }
