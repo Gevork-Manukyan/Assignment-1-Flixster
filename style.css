@@ -6,9 +6,49 @@ body {
     margin: 0;
 }
 
+img {
+    width: 250px;
+    height: auto;
+}
+
+/**************
+    SEARCH
+***************/
+
 .search-area {
     text-align: center;
 }
+
+
+/***************
+      GRID
+****************/
+
+#movieDisplay {
+    margin: 20px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+
+.grid-item {
+    border-style: solid;
+    justify-self: center;
+}
+
+.movie-header p {
+    margin: 0;
+}
+
+
+/****************
+    LOAD MORE
+*****************/
 
 .load-more-area {
     text-align: center;

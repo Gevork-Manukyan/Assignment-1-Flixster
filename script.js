@@ -26,12 +26,22 @@ searchForm.addEventListener("submit", async (evt) => {
 })
 
 
-
+/**
+ * 
+ * @param {String} targetURL - URL which is being searched
+ * @returns Object containing web response as json object
+ */
 async function getResponse(targetURL) {
     const respone = await fetch(targetURL);
     const responseData = await respone.json();
     return responseData;
 }
+
+/**
+ * 
+ * @param {Object} responseData - json object containing movie information
+ * @returns Object containing movieNames[], moviePoster[], movieRating[]
+ */
 
 function getMovieData(responseData) {
 
@@ -50,14 +60,45 @@ function getMovieData(responseData) {
     return movieInformation;
 }
 
+/**
+ * 
+ * @param {String} movieName - name of the movie
+ * @param {String} moviePoster - movie poster file path
+ * @param {Integer} movieRating - movie rating value
+ * 
+ * Adds a single movie to the page
+ */
+function addMovieToPage(movieName, moviePoster,  movieRating) {
+    document.querySelector(".grid-container").innerHTML += `
+    <div class="grid-item">
+         <img src="https://image.tmdb.org/t/p/original/${moviePoster}" >
+    </div>
+    `;
+}
+
+/**
+ * 
+ * @param {Object} movieInformation - contains three keys: movieNames, moviePosters, movieRatings
+ * 
+ * Loads all movies to the page
+ */
+function loadMoviesToPage(movieInformation) {
+    movieInformation.movieNames.forEach((element, index) => {
+        addMovieToPage(element, movieInformation.moviePosters[index], movieInformation.movieRatings[index]);
+    });
+}
+
 window.onload = onloadFunc;
 async function onloadFunc () {
-    //1. Search Api for movies
+        //1. Search Api for movies
         const apiURL = `https://api.themoviedb.org/3/trending/${mediaType}/${timeWindow}?api_key=${API_KEY}&page=${page}`
         const responseData = await getResponse(apiURL);
         
         console.log(responseData.results[0]);
         movieInformation = getMovieData(responseData);
-
+        
         //2. Display movies
+        loadMoviesToPage(movieInformation);
+
+
     }
