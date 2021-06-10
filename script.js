@@ -45,6 +45,7 @@ function inputSame(userInput) {
 
 
 
+
 loadMoreBtn.addEventListener("click", (evt) => {
     evt.preventDefault();
 
@@ -100,10 +101,10 @@ function addMovieToPage(movieName, moviePoster,  movieRating) {
     document.querySelector(".grid-container").innerHTML += `
     <div class="grid-item">
         <div class="movie-container">
-            <img src="https://image.tmdb.org/t/p/original/${moviePoster}" alt="Poster image of ${movieName}">
+            <img class="movie-image" src="https://image.tmdb.org/t/p/original/${moviePoster}" alt="Poster image of ${movieName}">
             <div class="movie-header">
-                <div class="movie-rating"><p>&#11088 ${movieRating}</p></div>
                 <div class="movie-title"><p>${movieName}</p></div>
+                <div class="movie-rating"><p>&#11088 ${movieRating}</p></div>
             </div>
         </div>
     </div>
@@ -147,6 +148,16 @@ async function displayMovies (apiURL) {
     const responseData = await getResponse(apiURL);
     movieInformation = getMovieData(responseData);
     loadMoviesToPage(movieInformation);
+
+    const movieImages = document.querySelectorAll(".movie-image")
+
+    movieImages.forEach((element) => {
+        element.addEventListener("click", movieClick);
+    })
+}
+
+function movieClick() {
+    console.log("Clicked");
 }
 
 window.onload = onloadFunc;
