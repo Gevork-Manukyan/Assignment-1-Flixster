@@ -2,3 +2,4 @@
 - Display Movies
 - Load More
 - More Details
+- load hottest movies when page is loaded
