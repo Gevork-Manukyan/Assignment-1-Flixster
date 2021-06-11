@@ -1,6 +1,6 @@
 ## Week 1 Assignment: Flixster
 
-Submitted by: **NAME**
+Submitted by: **Gevork Manukyan**
 
 Estimated time spent: **#** hours spent in total
 
