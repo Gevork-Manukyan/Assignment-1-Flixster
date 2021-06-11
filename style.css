@@ -19,10 +19,20 @@ body {
 
 .search-area {
     text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 #searchForm {
     color: black;
+}
+
+#searchBtn {
+    border-radius: 10px;
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 17px;
+    background-color: #535353;
+    color: white;
 }
 
 
@@ -231,5 +241,15 @@ body {
 
 .load-more-area {
     text-align: center;
-    padding: 10px 0;
+    padding-bottom: 30px;
+}
+
+#loadMoreBtn {
+    width: 120px;
+    height: 60px;
+    border-radius: 10px;
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 17px;
+    background-color: #535353;
+    color: white;
 }
