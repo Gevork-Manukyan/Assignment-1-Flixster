@@ -25,6 +25,7 @@ searchForm.addEventListener("submit", async (evt) => {
 
     //Checks if search is empty and loads trending page if so
     if (userInput.trim() == "") {
+        page = 1;
         loadTrendingMovies();
         currentInput = userInput;
         return;
