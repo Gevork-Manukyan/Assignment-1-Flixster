@@ -11,9 +11,7 @@ body {
 }
 
 img {
-    width: 250px;
-    height: auto;
-    border-radius: 20px;
+    
 }
 
 #pageContainer {
@@ -60,6 +58,12 @@ img {
     grid-template-rows: auto auto;
 }
 
+.movie-container img {
+    width: 250px;
+    height: auto;
+    border-radius: 20px;
+}
+
 .movie-header {
     display: grid;
     grid-template-columns: 70% 30%;
@@ -103,15 +107,30 @@ img {
     position: absolute;
     width: 100%;
     height: 100%;
-    opacity: 0.9;
+    opacity: 0.85;
 }
 
 #popUp {
-    width: 70%;
-    height: 85%;
+    width: 40%;
+    min-width: 300px;
+    height: 90%;
+    max-height: 735px;
     border-style: solid;
     border-color: black;
     z-index: 1;
+    overflow: auto;
+}
+
+#popUp #popupBackDropImg {
+    width: 100%;
+    height: auto;
+}
+
+#popUp #popupPosterImg {
+    width: 26.5%;
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
 }
 
 .centered {

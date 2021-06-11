@@ -180,7 +180,7 @@ async function displayPopup (movieURL, movieName, moviePoster, movieRating) {
     // console.log(movieGenre);
     // console.log(movieRuntime);
 
-
+    
 }
 
 window.onload = onloadFunc;
