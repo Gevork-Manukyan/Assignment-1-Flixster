@@ -30,7 +30,8 @@ searchForm.addEventListener("submit", async (evt) => {
     }
 
     currentInput = userInput;
-    const apiURL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${userInput}`;
+    page = 1;
+    const apiURL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${userInput}&page=${page}`;
     displayMovies(apiURL);
 })
 
@@ -48,10 +49,25 @@ loadMoreBtn.addEventListener("click", (evt) => {
     evt.preventDefault();
 
     page++;
-    const apiURL = `https://api.themoviedb.org/3/trending/${mediaType}/${timeWindow}?api_key=${API_KEY}&page=${page}`;
+    let apiURL = "";
+    
+    if (viewingTrending()) {
+        apiURL = `https://api.themoviedb.org/3/trending/${mediaType}/${timeWindow}?api_key=${API_KEY}&page=${page}`;
+    }
+    else {
+        console.log("search")
+        apiURL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${currentInput}&page=${page}`;
+    }
+
     displayMovies(apiURL);
 });
 
+function viewingTrending () {
+    if (currentInput.trim() === "")
+        return true;
+    else 
+        return false;
+}
 
 /**
  * 
@@ -149,11 +165,9 @@ async function displayMovies (apiURL) {
     const movieInformation = getMovieData(responseData);
     loadMoviesToPage(movieInformation);
 
-    // //https://api.themoviedb.org/3/movie/337404?api_key=e34b1cb04a474e9600a7d1c5ef07069f&language=en-US
-    // // https://api.themoviedb.org/3/genre/movie/list?api_key=e34b1cb04a474e9600a7d1c5ef07069f&language=en-US
-
-    const movieImages = document.querySelectorAll(".movie-image-"+page);
+    const movieImages = document.querySelectorAll(".movie-image-" + page);
     
+    console.log()
     movieImages.forEach((element, index) => {
         element.addEventListener("click", (evt) => {
             const movieURL = `https://api.themoviedb.org/3/movie/${movieInformation.movieID[index]}?api_key=e34b1cb04a474e9600a7d1c5ef07069f&language=en-US`;

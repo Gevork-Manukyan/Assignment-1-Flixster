@@ -1,3 +1,5 @@
 - fix bug where movies can't be clicked when searched and 
   more loaded
 - x button stick at top when scrolling
+
+- now playing and search title 
