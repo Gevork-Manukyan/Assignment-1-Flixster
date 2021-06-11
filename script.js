@@ -75,12 +75,14 @@ async function getResponse(targetURL) {
 function getMovieData(responseData) {
 
     const movieInformation = {
+        movieID: [],
         movieNames: [],
         moviePosters: [],
         movieRatings: []
     }
 
     responseData.results.forEach((element) => {
+        movieInformation.movieID.push(element.id);
         movieInformation.movieNames.push(element.original_title);
         movieInformation.moviePosters.push(element.poster_path);
         movieInformation.movieRatings.push(element.vote_average);
@@ -124,9 +126,9 @@ function addMovieToPage(movieName, moviePoster,  movieRating) {
  * 
  * Loads all movies to the page
  */
-function loadMoviesToPage(movieInformation) {
-    movieInformation.movieNames.forEach((element, index) => {
-        addMovieToPage(element, movieInformation.moviePosters[index], movieInformation.movieRatings[index]);
+function loadMoviesToPage({movieNames, moviePosters, movieRatings}) {
+    movieNames.forEach((element, index) => {
+        addMovieToPage(element, moviePosters[index], movieRatings[index]);
     });
 }
 
@@ -146,18 +148,39 @@ function loadTrendingMovies() {
  */
 async function displayMovies (apiURL) {
     const responseData = await getResponse(apiURL);
-    movieInformation = getMovieData(responseData);
+    const movieInformation = getMovieData(responseData);
     loadMoviesToPage(movieInformation);
 
-    const movieImages = document.querySelectorAll(".movie-image")
+    // //https://api.themoviedb.org/3/movie/337404?api_key=e34b1cb04a474e9600a7d1c5ef07069f&language=en-US
+    // // https://api.themoviedb.org/3/genre/movie/list?api_key=e34b1cb04a474e9600a7d1c5ef07069f&language=en-US
 
-    movieImages.forEach((element) => {
-        element.addEventListener("click", movieClick);
+    const movieImages = document.querySelectorAll(".movie-image");
+
+    movieImages.forEach((element, index) => {
+        element.addEventListener("click", (evt) => {
+            const movieURL = `https://api.themoviedb.org/3/movie/${movieInformation.movieID[index]}?api_key=e34b1cb04a474e9600a7d1c5ef07069f&language=en-US`;
+            displayPopup(movieURL, movieInformation.movieNames[index], movieInformation.moviePosters, movieInformation.movieRatings);
+        });
     })
 }
 
-function movieClick() {
-    console.log("Clicked");
+async function displayPopup (movieURL, movieName, moviePoster, movieRating) {
+    const movieData = await getResponse(movieURL);
+    // console.log(movieData);
+    
+    const movieOverview = movieData.overview;
+    const movieReleaseDate = movieData.release_date;
+    const movieBackDropPath = movieData.backdrop_path;
+    const movieRuntime = movieData.runtime;
+    const movieGenre = movieData.genres.map(x => x.name);
+
+    // console.log(movieOverview);
+    // console.log(movieReleaseDate);
+    // console.log(movieBackDropPath);
+    // console.log(movieGenre);
+    // console.log(movieRuntime);
+
+
 }
 
 window.onload = onloadFunc;
