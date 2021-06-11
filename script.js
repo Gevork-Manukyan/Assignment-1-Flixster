@@ -44,8 +44,6 @@ function inputSame(userInput) {
 }
 
 
-
-
 loadMoreBtn.addEventListener("click", (evt) => {
     evt.preventDefault();
 
@@ -103,7 +101,7 @@ function addMovieToPage(movieName, moviePoster,  movieRating) {
     document.querySelector(".grid-container").innerHTML += `
     <div class="grid-item">
         <div class="movie-container">
-            <img class="movie-image" src="https://image.tmdb.org/t/p/original/${moviePoster}" alt="Poster image of ${movieName}">
+            <img class="movie-image-${page}" src="https://image.tmdb.org/t/p/original/${moviePoster}" alt="Poster image of ${movieName}">
             <div class="movie-header">
                 <div class="movie-title"><p>${movieName}</p></div>
                 <div class="movie-rating"><p>&#11088 ${movieRating}</p></div>
@@ -154,12 +152,12 @@ async function displayMovies (apiURL) {
     // //https://api.themoviedb.org/3/movie/337404?api_key=e34b1cb04a474e9600a7d1c5ef07069f&language=en-US
     // // https://api.themoviedb.org/3/genre/movie/list?api_key=e34b1cb04a474e9600a7d1c5ef07069f&language=en-US
 
-    const movieImages = document.querySelectorAll(".movie-image");
-
+    const movieImages = document.querySelectorAll(".movie-image-"+page);
+    
     movieImages.forEach((element, index) => {
         element.addEventListener("click", (evt) => {
             const movieURL = `https://api.themoviedb.org/3/movie/${movieInformation.movieID[index]}?api_key=e34b1cb04a474e9600a7d1c5ef07069f&language=en-US`;
-            displayPopup(movieURL, movieInformation.movieNames[index], movieInformation.moviePosters, movieInformation.movieRatings);
+            displayPopup(movieURL, movieInformation.movieNames[index], movieInformation.moviePosters[index], movieInformation.movieRatings[index]);
         });
     })
 }
@@ -172,15 +170,37 @@ async function displayPopup (movieURL, movieName, moviePoster, movieRating) {
     const movieReleaseDate = movieData.release_date;
     const movieBackDropPath = movieData.backdrop_path;
     const movieRuntime = movieData.runtime;
-    const movieGenre = movieData.genres.map(x => x.name);
+    const movieGenre = movieData.genres.map(x => " " + x.name);
 
-    // console.log(movieOverview);
-    // console.log(movieReleaseDate);
-    // console.log(movieBackDropPath);
-    // console.log(movieGenre);
-    // console.log(movieRuntime);
+    const popUpContainer = document.querySelector(".popUp-container");
 
-    
+    popUpContainer.classList.add("popUp-visible");
+    popUpContainer.innerHTML += `
+        <div id="popUp" class="centered">
+            <button id="closeBtn" alt="close pop up">X</button>
+            <img class="popUp-grid-item" id="popupBackDropImg" src="https://image.tmdb.org/t/p/original/${movieBackDropPath}">
+            <img class="popUp-grid-item" id="popupPosterImg" src="https://image.tmdb.org/t/p/original/${moviePoster}">
+            <div class="popUp-grid-item" id="popupInfo">
+                <p id="movieGenre">${movieGenre}</p>
+                <p id="movieName">${movieName}</p>
+                <div id="movieInformation">
+                    <p id="movieTime">${movieRuntime} min | ${movieReleaseDate}</p>
+                    <p id="movieRating">${movieRating} &#11088</p>
+                </div>
+            </div>
+            <div class="popUp-grid-item" id="popupOverview"></div>
+        </div>
+     `;
+
+    const closeBtn = document.querySelector("#closeBtn");
+    closeBtn.addEventListener("click", (evt) => {
+        closePopup(popUpContainer);
+    });
+}
+
+function closePopup (popUpContainer) {
+    popUpContainer.classList.remove("popUp-visible");
+    popUpContainer.innerHTML = "";
 }
 
 window.onload = onloadFunc;
