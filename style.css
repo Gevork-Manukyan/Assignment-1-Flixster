@@ -1,21 +1,16 @@
-* {
-    color: white;
-}
-
 header {
     text-align: center;
+    color: white;
+    padding-top: 10px;
+    font-size: 35px;
 }
 
 body {
     margin: 0;
 }
 
-img {
-    
-}
-
 #pageContainer {
-    background-color: black;
+    background-color: #151515;
 }
 
 /**************
@@ -24,6 +19,10 @@ img {
 
 .search-area {
     text-align: center;
+}
+
+#searchForm {
+    color: black;
 }
 
 
@@ -40,14 +39,16 @@ img {
     display: grid;
     grid-template-columns: repeat(4, minmax(25%, 400px));
     grid-column-gap: 10px;
-    grid-row-gap: 10px;
+    grid-row-gap: 20px;
 }
 
 .grid-item {
-    border-style: solid;
-    border-color: white;
+    /* border-style: solid;
+    border-color: white; */
     justify-self: center;
     cursor: pointer;
+    color: white;
+    font-family: 'Roboto', sans-serif;
 }
 
 .movie-container {
@@ -97,8 +98,8 @@ img {
     position: fixed;
     width: 100%;
     height: 100%;
-    border-style: solid;
-    border-color: red;
+    /* border-style: solid;
+    border-color: red; */
 }
 
 .popUp-visible::after {
@@ -107,23 +108,22 @@ img {
     position: absolute;
     width: 100%;
     height: 100%;
-    opacity: 0.85;
+    opacity: 0.90;
 }
 
 #popupInfo > p {
-    color: black;
     margin: 10px 3px;
 }
 
 #closeBtn {
     position: fixed;
-    right: 0;
-    top: 0;
+    right: 7px;
+    top: 3px;
     background-color: gray;
     height: 40px;
     width: 40px;
     border-radius: 50%;
-    opacity: 0.5;
+    opacity: 0.95;
 }
 
 #popUp {
@@ -131,8 +131,8 @@ img {
     min-width: 300px;
     height: 90%;
     max-height: 735px;
-    border-style: solid;
-    border-color: black;
+    /* border-style: solid;
+    border-color: black; */
     z-index: 1;
     overflow-y: auto;
     overflow-x: hidden;
@@ -143,25 +143,41 @@ img {
                          "poster info"
                          "overview overview";
     grid-template-columns: 26% 74%;
-    grid-template-rows: fit-content(0) 105px;
+    grid-template-rows: fit-content(0) max(105px, 18%) ;
 }
 
 #popupBackDropImg {
     grid-area: backdrop;
     width: 99.2%;
     height: auto;
+    border-radius: 20px;
 }
 
 #popupPosterImg {
     grid-area: poster;
     width: 100%;
-    transform: translate(0, -55%);
+    transform: translate(15px, -55%);
+    border-radius: 20px;
 }
 
 #popupInfo {
     grid-area: info;
     color: black;
-    padding: 0 7px;
+    padding-right: 7px;
+    padding-left: 22px;
+    
+}
+
+#movieGenre {
+    font-family: 'Hammersmith One', sans-serif;
+    color: gray;
+    font-size: large;
+}
+
+#movieName {
+    font-family: 'Roboto', sans-serif;
+    font-size: max(1.7vw, 20px);
+    
 }
 
 #movieInformation {
@@ -172,11 +188,17 @@ img {
 #movieTime {
     color: black;
     margin: 0;
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: large;
+    color: grey;
 }
 
 #movieRating {
-    color: black;
+    color: grey;
     margin: 0;
+    font-size: large;
+    padding-bottom: 5px;
+    font-family: 'Hammersmith One', sans-serif;
 }
 
 #movieInformation #movieRating{
@@ -186,11 +208,14 @@ img {
 #popupOverview {
     grid-area: overview;
     color: black;
+    padding-top: max(2.1vw, 26px);
+    /* font-size: max(); */
+    font-family: 'Hammersmith One', sans-serif;
 }
 
 .popUp-grid-item {
-    border-style: solid;
-    border-color: blue;
+    /* border-style: solid;
+    border-color: blue; */
 }
 
 .centered {

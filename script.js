@@ -170,7 +170,7 @@ async function displayPopup (movieURL, movieName, moviePoster, movieRating) {
     const movieReleaseDate = movieData.release_date;
     const movieBackDropPath = movieData.backdrop_path;
     const movieRuntime = movieData.runtime;
-    const movieGenre = movieData.genres.map(x => " " + x.name);
+    const movieGenre = movieData.genres.map(x => " " + x.name.toUpperCase());
 
     const popUpContainer = document.querySelector(".popUp-container");
 
@@ -188,7 +188,7 @@ async function displayPopup (movieURL, movieName, moviePoster, movieRating) {
                     <p id="movieRating">${movieRating} &#11088</p>
                 </div>
             </div>
-            <div class="popUp-grid-item" id="popupOverview"></div>
+            <div class="popUp-grid-item" id="popupOverview">${movieOverview}</div>
         </div>
      `;
 

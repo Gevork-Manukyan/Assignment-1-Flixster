@@ -1,5 +1,3 @@
-- Search Bar
-- Display Movies
-- Load More
-- More Details
-- load hottest movies when page is loaded
+- fix bug where movies can't be clicked when searched and 
+  more loaded
+- x button stick at top when scrolling
