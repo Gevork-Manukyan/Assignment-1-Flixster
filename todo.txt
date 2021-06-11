@@ -1,5 +1,6 @@
-- fix bug where movies can't be clicked when searched and 
-  more loaded
+
 - x button stick at top when scrolling
 
-- now playing and search title 
+
+biggest challenge was getting the prev loaded movies to retain their event.
+    - solved it by finding about createElement and childAppend functions
