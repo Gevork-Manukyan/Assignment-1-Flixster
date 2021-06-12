@@ -8,6 +8,8 @@ Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 
 ### Application Features
 
+Note: API key has been removed and thus must be provided
+
 #### REQUIRED FEATURES
 
 - [x] User can view a list of current movies from The Movie Database API as a grid view.
