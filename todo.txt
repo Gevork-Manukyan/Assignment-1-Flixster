@@ -4,3 +4,9 @@
 
 biggest challenge was getting the prev loaded movies to retain their event.
     - solved it by finding about createElement and childAppend functions
+
+I would add a menu bar for better navigation through the site
+Fix bugs regarding certain movies that don't have backdrops
+I would add movie trailer options
+
+The feature that I am most proud of is the popup because I spent a lot of time designing the 
