@@ -29,7 +29,7 @@ Note: API key has been removed and thus must be provided
 
 ### Walkthrough Video
 
-I am trying to upload the gif but it is too big so I am trimming it
+<img src="Demo.gif">
 
 
 ### Reflection
