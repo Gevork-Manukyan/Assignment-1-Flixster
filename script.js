@@ -1,4 +1,4 @@
-const API_KEY = "YOUR_KEY";
+const API_KEY = "e34b1cb04a474e9600a7d1c5ef07069f";
 
 const searchForm = document.querySelector("#searchForm");
 const searchBtn = document.querySelector("#searchBtn");
@@ -203,8 +203,8 @@ async function displayPopup (movieURL, movieName, moviePoster, movieRating) {
     popUpContainer.innerHTML += `
         <div id="popUp" class="centered">
             <button id="closeBtn" alt="close pop up">X</button>
-            <img class="popUp-grid-item" id="popupBackDropImg" src="https://image.tmdb.org/t/p/original/${movieBackDropPath}">
-            <img class="popUp-grid-item" id="popupPosterImg" src="https://image.tmdb.org/t/p/original/${moviePoster}">
+            <img class="popUp-grid-item" id="popupBackDropImg" src="https://image.tmdb.org/t/p/original/${movieBackDropPath}" alt="Backdrop image of ${movieName}">
+            <img class="popUp-grid-item" id="popupPosterImg" src="https://image.tmdb.org/t/p/original/${moviePoster}" alt="Poster image of ${movieName}">
             <div class="popUp-grid-item" id="popupInfo">
                 <p id="movieGenre">${movieGenre}</p>
                 <p id="movieName">${movieName}</p>
