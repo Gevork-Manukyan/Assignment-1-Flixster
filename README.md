@@ -29,7 +29,7 @@ Note: API key has been removed and thus must be provided
 
 ### Walkthrough Video
 
-<img src="Demo.gif">
+https://www.loom.com/share/b6ec67515cbb4b4aacbff7e1ef494c92
 
 
 ### Reflection
