@@ -4,7 +4,7 @@ Submitted by: **Gevork Manukyan**
 
 Estimated time spent: **#16** hours spent in total
 
-<!-- Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE) -->
+Deployed Application (optional): [Flixster Deployed Site](https://gevork-manukyan.github.io/Assignment-1-Flixster/)
 
 ### Application Features
 
